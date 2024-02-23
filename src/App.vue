@@ -11,19 +11,42 @@ function decrementarContador() {
   contador.value--
 }
 
+function moverBotao() {
+    const botao = document.getElementById("meuBotao");
+    const novaPosicaoX = Math.random() * (window.innerWidth - botao.offsetWidth);
+    const novaPosicaoY = Math.random() * (window.innerHeight - botao.offsetHeight);
+    botao.style.left = novaPosicaoX + "px";
+    botao.style.top = novaPosicaoY + "px";
+    contador.value = 0;
+}
+
 onMounted(() => {
   console.log(`O valor inicial do contador é ${contador.value}.`)
 })
+
+
 </script>
 
 <template>
-  <button @click="incrementarContador">+</button>
+  <p>{{ contador }}</p>
+  <div class="row">
+    <button @click="incrementarContador">+</button>
   <button @click="decrementarContador">-</button>
-  <p>Valor do contador é {{ contador }}</p>
+  <button id="meuBotao" @click="moverBotao">Limpar</button>
+  </div>
 </template>
 
 <style scoped>
-  button {
-    font-weight: bold;
+  .row{
+    display: flex;
+    align-items: center;
+    align-self: center;
+  }
+  button{
+    height: 50px;
+    width: 100px;
+    margin: 0 10px 0 10px;
+    background-color: darkslateblue;
+    border: none;
   }
 </style>
