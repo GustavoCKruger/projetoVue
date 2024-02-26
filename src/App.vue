@@ -8,17 +8,15 @@ function incrementarContador() {
 }
 
 function decrementarContador() {
-  contador.value--
+  if(contador.value > 0){
+    contador.value--;
+  }
 }
 
-function moverBotao() {
-    const botao = document.getElementById("meuBotao");
-    const novaPosicaoX = Math.random() * (window.innerWidth - botao.offsetWidth);
-    const novaPosicaoY = Math.random() * (window.innerHeight - botao.offsetHeight);
-    botao.style.left = novaPosicaoX + "px";
-    botao.style.top = novaPosicaoY + "px";
-    contador.value = 0;
+function limpar(){
+  contador.value = 0;
 }
+
 
 onMounted(() => {
   console.log(`O valor inicial do contador é ${contador.value}.`)
@@ -28,25 +26,26 @@ onMounted(() => {
 </script>
 
 <template>
-  <p>{{ contador }}</p>
-  <div class="row">
-    <button @click="incrementarContador">+</button>
-  <button @click="decrementarContador">-</button>
-  <button id="meuBotao" @click="moverBotao">Limpar</button>
+  <button id="num" disabled>{{ contador }}</button>
+  <div id="options">
+    <button id="adicionar" @click="incrementarContador">Incrementar</button>
+    <button id="decrementar" @click="decrementarContador">Decrementar</button>
+    <button id="limpar" @click="limpar">Limpar</button>
   </div>
 </template>
 
 <style scoped>
-  .row{
-    display: flex;
-    align-items: center;
-    align-self: center;
+  #num{
+    color: black;
+    background-color: azure;
   }
   button{
-    height: 50px;
-    width: 100px;
-    margin: 0 10px 0 10px;
-    background-color: darkslateblue;
-    border: none;
+    background-color: blueviolet;
+    border-radius: 20px;
+  }
+  .options{
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 </style>
